@@ -1,0 +1,115 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #0b0b0d;
+  --color-coal: #131318;
+  --color-graphite: #1c1c23;
+  --color-line: #2a2a33;
+  --color-gold: #d4af37;
+  --color-gold-soft: #f0d98c;
+  --color-gold-deep: #a8842a;
+  --color-mist: #a1a1ad;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+input,
+button,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Utilitarios do tema */
+.text-gradient-gold {
+  background: linear-gradient(120deg, var(--color-gold-soft), var(--color-gold) 55%, var(--color-gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(120deg, var(--color-gold-soft), var(--color-gold) 55%, var(--color-gold-deep));
+}
+
+.surface {
+  background: linear-gradient(160deg, rgb(255 255 255 / 5%), rgb(255 255 255 / 1%));
+  border: 1px solid var(--color-line);
+}
+
+.glow-gold {
+  box-shadow: 0 10px 30px -12px rgb(212 175 55 / 45%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.28s ease-out both;
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-pop {
+  animation: pop 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-pop {
+    animation: none;
+  }
+}
