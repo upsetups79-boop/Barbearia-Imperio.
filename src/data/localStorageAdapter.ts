@@ -196,4 +196,7 @@ function buildSeed(): Booking[] {
 }
 
 /** Instancia usada pela aplicacao. */
-export const bookingRepository: BookingRepository = createLocalBookingRepository();
+import { createSupabaseBookingRepository } from './supabaseAdapter';
+
+// Substitui o repositório local pelo do Supabase direto na exportação
+export const bookingRepository: BookingRepository = createSupabaseBookingRepository();
