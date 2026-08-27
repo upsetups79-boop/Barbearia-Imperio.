@@ -1,10 +1,28 @@
-import { supabase } from '../supabase';
-import type { Booking, BookingStatus, NewBooking } from '../types';
-import {
-  BookingConflictError,
-  BookingNotFoundError,
-  type BookingRepository,
-} from './bookingRepository';
+// Mapeia os dados do formulário para os nomes exatos das colunas da tabela bookings do Supabase
+const dbPayload = {
+  service_id: input.serviceId,
+  service_name: input.serviceName,
+  professional_id: input.professionalId,
+  professional_name: input.professionalName,
+  date: input.date,
+  start_time: input.startTime,
+  duration_min: input.durationMin,
+  price: input.price,
+  client_name: input.customerName,
+  client_phone: input.customerPhone,
+  notes: input.notes || '',
+  status: 'confirmado',
+};
+
+const { data, error } = await supabase
+  .from('bookings')
+  .insert([dbPayload]);
+
+if (error) {
+  console.error('Erro detalhado do Supabase:', error);
+} else {
+  console.log('Salvo com sucesso no Supabase!', data);
+}
 
 // Função auxiliar para mapear o formato do Supabase para o tipo Booking do app
 // (Caso precise ajustar nomes de colunas do banco para o padrão do TypeScript)
