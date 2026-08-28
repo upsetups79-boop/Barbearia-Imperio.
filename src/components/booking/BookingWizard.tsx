@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProfessional, getService } from '../../config/shop';
-import { bookingRepository } from '../../data/supabaseBookingRepository';
-import { bookingRepository } from '../../data/localStorageAdapter';
+import { bookingRepository, BookingConflictError } from '../../data/supabaseBookingRepository';
 import { isValidPhone } from '../../lib/format';
 import type { ServiceId } from '../../types';
 import { Button } from '../ui/Button';

@@ -8,13 +8,6 @@ export class BookingConflictError extends Error {
   }
 }
 
-export class BookingNotFoundError extends Error {
-  constructor(message = 'Agendamento não encontrado.') {
-    super(message);
-    this.name = 'BookingNotFoundError';
-  }
-}
-
 export const bookingRepository = {
   async create(bookingData: {
     serviceId: string;
@@ -37,9 +30,7 @@ export const bookingRepository = {
       .insert([
         {
           barbershop_slug: barbershopSlug,
-          service_id: bookingData.serviceId,
           service_name: bookingData.serviceName,
-          professional_id: bookingData.professionalId,
           professional_name: bookingData.professionalName,
           date: bookingData.date,
           start_time: bookingData.startTime,
